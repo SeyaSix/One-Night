@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Gazette du Sorcier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #c9b896;
+            font-family: 'Times New Roman', serif;
+            padding: 20px;
+        }
+
+        .newspaper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #d4c4a0, #c9b896, #bfa77a);
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            border: 2px solid #8b7355;
+            position: relative;
+        }
+
+        .newspaper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 115, 85, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 60% 70%, rgba(92, 64, 51, 0.15) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(101, 67, 33, 0.1) 1px, transparent 1px);
+            background-size: 100px 100px, 150px 150px, 120px 120px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-family: 'Old English Text MT', serif;
+            color: #2c2416;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 12px;
+            font-style: italic;
+            color: #5a4a3a;
+        }
+
+        .date-price {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #5a4a3a;
+            margin-bottom: 20px;
+            padding: 5px 0;
+            border-bottom: 1px solid #8b7355;
+        }
+
+        .main-article {
+            margin-bottom: 25px;
+        }
+
+        .main-article h2 {
+            font-size: 32px;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .article-content {
+            columns: 2;
+            column-gap: 30px;
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .moving-photo {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #8b7355;
+            margin: 0 15px 15px 0;
+            float: left;
+            background: linear-gradient(45deg, #d4af37, #f4e4c1, #d4af37);
+            background-size: 200% 200%;
+            animation: shimmer 3s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .moving-photo::before {
+            content: '✨';
+            position: absolute;
+            font-size: 24px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+
+        .secondary-articles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #2c2416;
+        }
+
+        .article {
+            padding: 10px;
+            border: 1px solid #d4c4a8;
+        }
+
+        .article h3 {
+            font-size: 18px;
+            color: #2c2416;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #8b7355;
+            padding-bottom: 3px;
+        }
+
+        .article p {
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .hidden-message {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #fff9e6;
+            border: 2px dashed #d4af37;
+            text-align: center;
+        }
+
+        .hidden-message p {
+            font-size: 16px;
+            color: #2c2416;
+            font-weight: bold;
+        }
+
+        .emphasis {
+            font-weight: bold;
+            color: #8b0000;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .newspaper {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="newspaper">
+        <div class="header">
+            <h1>La Gazette du Sorcier</h1>
+            <p class="subtitle">Le journal des sorcières et sorciers depuis 1743</p>
+        </div>
+
+        <div class="date-price">
+            <span>Édition du Mercredi 15 Octobre 2025</span>
+            <span>Prix : 5 Mornilles</span>
+        </div>
+
+        <div class="main-article">
+            <h2>NOUVELLE EXTRAORDINAIRE DANS LE MONDE MAGIQUE</h2>
+            
+            <div class="moving-photo">
+                <img src="moi.gif" alt="Photo magique">
+            
+               
+            </div>
+
+            <div class="article-content">
+                <p><strong>Par Rita Skeeter, correspondante spéciale</strong></p>
+                
+                <p>Dans une révélation qui a secoué le monde magique, notre rédaction a découvert l'histoire extraordinaire de Mathias et Noémie, un couple qui défie toutes les prédictions des boules de cristal.</p>
+
+                <p>Leur rencontre, il y a sept années de cela, semblait tout droit sortie d'un conte de fées moldu. Certains témoins affirment avoir vu des étincelles magiques lors de leur première conversation. "C'était comme si la magie elle-même avait orchestré cette rencontre," déclare un témoin anonyme.</p>
+
+                <p>Depuis quatre ans, le couple partage un cocon de 40m² rempli de magie et de tendresse, accompagné de leur fidèle familière Dobbye, une chatte aux grandes oreilles grise et blanche qui règne sur leur petit royaume. Le Choixpeau aurait sans aucun doute envoyé ces deux âmes à Poufsouffle, la maison des cœurs loyaux et des amis des créatures magiques.</p>
+
+                <p>Noémie, animatrice dévouée auprès des sorciers âgés dans une EHPAD, apporte chaque jour joie et réconfort aux <span class="clickable-word" onclick="toggleEnigma('enigma2')">résidents</span>. Sa créativité et son amour pour l'univers de Poudlard sont légendaires. Mathias, développeur dans le monde moldu, tisse des sorts numériques avec la même passion qu'un maître des potions.</p>
+
+                <p>Des <span class="clickable-word" onclick="toggleEnigma('enigma1')">sources</span> proches du couple suggèrent qu'une annonce importante pourrait être imminente. Mathias, selon nos informations exclusives, souhaiterait franchir une étape décisive dans leur <span class="clickable-word" onclick="toggleEnigma('enigma3')">histoire d'amour</span>. "Il espère qu'elle aussi veut construire leur vie ensemble," confie un proche.</p>
+
+                <p>Leur amour semble plus fort que jamais, résistant à toutes les épreuves comme le sortilège le plus puissant. Ensemble, ils ont bravé sept années d'aventures, <span class="clickable-word" onclick="toggleEnigma('enigma4')">partageant</span> rires, larmes, et la passion commune pour le monde magique.</p>
+
+                <p>Cette histoire nous rappelle que la vraie magie réside dans l'amour et la complicité. Continuez à lire pour découvrir la suite de cette aventure extraordinaire qui se déroule aujourd'hui même dans leur petit nid douillet...</p>
+            </div>
+
+            <div style="text-align: center; font-style: italic; color: #5a4a3a; font-size: 12px; margin-top: 15px; padding: 10px; border-top: 1px dotted #8b7355; border-bottom: 1px dotted #8b7355;">
+                <strong>✨ Formule de Révélation ✨</strong> — <em>Certains mots de cet article renferment des secrets anciens. Touche-les pour dévoiler les énigmes cachées...</em><br>
+                <span style="font-size: 11px; color: #8b7355;">Indices : origines • habitants • romance • partage</span>
+            </div>
+        </div>
+
+        <div class="secondary-articles">
+            <div class="article hidden" id="enigma1">
+                <h3>Énigme I - Le Miroir aux Secrets</h3>
+                <p style="font-style: italic; line-height: 1.8;">Dans cette salle où l'eau coule et où les secrets se murmurent,<br>
+                Où une certaine Mimi pleurait dans les tuyaux obscures,<br>
+                Cherche près du miroir où tu te regardes chaque matin,<br>
+                Car c'est là que se cache le prochain indice de ton destin.<br>
+                Ouvre tes yeux comme Tom ouvrit la Chambre autrefois,<br>
+                Et tu découvriras ce que mon cœur te destine, crois moi.</p>
+            </div>
+
+            <div class="article hidden" id="enigma2">
+                <h3>Énigme II - Les Potions du Foyer</h3>
+                <p style="font-style: italic; line-height: 1.8;">Tel Rogue surveillant ses chaudrons bouillonnants,<br>
+                Nous préparons ici des breuvages réconfortants.<br>
+                Cherche là où reposent les ingrédients de nos repas,<br>
+                Où le sel côtoie le poivre dans leur éternel combat.<br>
+                Près des épices qui parfument nos plats d'amour,<br>
+                Se trouve l'indice qui te mènera vers notre plus beau jour.</p>
+            </div>
+
+            <div class="article hidden" id="enigma3">
+                <h3>Énigme III - Rêves</h3>
+                <p style="font-style: italic; line-height: 1.8;">Dans ce refuge où Harry rêvait sous son baldaquin rouge et or,<br>
+                Où les secrets se partagent avant que chacun ne s'endorme,<br>
+                Cherche là où repose ta tête chaque nuit,<br>
+                Où nos rêves se mêlent jusqu'à l'aube qui luit.<br>
+                Sous l'oreiller ou près du lit où l'on trouve le repos,<br>
+                T'attend la question qui changera nos vies, ce n'est pas un faux.</p>
+            </div>
+
+            <div class="article hidden" id="enigma4">
+                <h3>Énigme IV - Le Cœur du Foyer</h3>
+                <p style="font-style: italic; line-height: 1.8;">Dans ce lieu chaleureux où crépite notre foyer,<br>
+                Comme à Gryffondor où les amis aiment se retrouver,<br>
+                Cherche près de la source de chaleur et de lumière,<br>
+                Là où nous partageons nos rires et nos soirées entières.<br>
+                C'est ici, au cœur de notre maison et de notre histoire,<br>
+                Que t'attend la question la plus importante de notre mémoire.</p>
+            </div>
+        </div>
+
+        <script>
+            
+            window.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.article').forEach(function(article) {
+                    article.style.display = 'none';
+                });
+            });
+
+            function toggleEnigma(enigmaId) {
+                const enigma = document.getElementById(enigmaId);
+                if (enigma.style.display === 'none' || enigma.style.display === '') {
+                    enigma.style.display = 'block';
+                    enigma.style.animation = 'fadeIn 0.5s ease-in';
+                } else {
+                    enigma.style.display = 'none';
+                }
+            }
+        </script>
+
+
+    </div>
+</body>
+</html>
